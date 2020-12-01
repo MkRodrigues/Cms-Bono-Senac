@@ -2,11 +2,21 @@
     <h1>CRUD Contatos do Menu Plugin</h1><br><br>
 
     <?php
+
+    if (isset($msg)) {
+        echo "<font color='green'>$msg</font><br><br>";
+    }
+
+    if (isset($erro)) {
+        echo "<font color='red'>$erro</font><br><br>";
+    }
+
     if (count($contatos) > 0) {
         echo "<table border='1'>
         <tr>
             <td>Nome</td>
             <td>WhatsApp</td>
+            <td>Ações</td>
         </tr>";
 
         foreach ($contatos as $contato) {
@@ -15,7 +25,13 @@
             <tr>
                 <td>{$contato->nome}</td>
                 <td>{$contato->whatsapp}</td>
-            </tr>";
+                <td>
+                    <a href='?page={$_GET['page']}&editar={$contato->id}'>Editar</a>
+                    <a href='?page={$_GET['page']}&apagar={$contato->id}'>Excluir</a>
+                </td>
+
+            </tr>
+            ";
         }
     }
 
