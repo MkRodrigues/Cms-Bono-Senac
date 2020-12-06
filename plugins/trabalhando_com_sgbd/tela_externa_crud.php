@@ -1,3 +1,8 @@
+<form action="">
+    <input type="text" placeholder="Buscar" name="termo">
+    <input type="submit" name="buscar" value="Buscar">
+</form>
+
 <?php
 
 if (count($contatos) > 0) {

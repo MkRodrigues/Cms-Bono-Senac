@@ -57,7 +57,14 @@ function tela_dinamica()
 {
     global $wpdb;
 
-    $contatos = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}agenda");
+    // Implementa busca na página do usuário
+    if (isset($_GET['buscar']) && !empty($_GET['termo'])) {
+
+        $parametro_busca = "%{$_GET['termo']}%";
+        $contatos = $wpdb->get_results($wpdb->prepare("SELECT * FROM {$wpdb->prefix}agenda WHERE nome LIKE %s", $parametro_busca));
+    } else {
+        $contatos = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}agenda");
+    }
 
     ob_start();
 
